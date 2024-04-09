@@ -4,14 +4,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
+import TeamMembers from './components/teams/TeamMembers.vue'
 
 // tell it the type of routes we want to support.
 const router = createRouter({
     // history tells the router how to handle the history 
     history: createWebHistory(),
     routes: [
-        { path: '/teams', component: TeamsList }, // our-domain.com/teams => certain component will be loaded
-        { path: '/users', component: UsersList }, // our-domain.com/teams => certain component will be loaded
+        { path: '/users', component: UsersList },
+        { path: '/teams', component: TeamsList },
+        { path: '/teams/:teamId', component: TeamMembers },
     ]
 });
 
