@@ -11,6 +11,7 @@ const router = createRouter({
     // history tells the router how to handle the history 
     history: createWebHistory(),
     routes: [
+        { path: '/', component: TeamsList },
         { path: '/users', component: UsersList },
         { path: '/teams', component: TeamsList },
         { path: '/teams/:teamId', component: TeamMembers, props: true },
