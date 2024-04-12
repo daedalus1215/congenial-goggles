@@ -13,8 +13,7 @@ export default {
     teamMembersLink() {
       return {
         name: 'team-members',
-        params: { teamId: this.id },
-        query: { sort: 'asc' }
+        params: { teamId: this.id }
       }
     }
   }
