@@ -19,6 +19,8 @@ const router = createRouter({
             path: '/users', 
             components: { default: UsersList, footer: UsersFooter },
             beforeEnter(to, from, next) {
+                console.log('main\'s /user\'s route beforeEnter')
+
                 next(); // behave normally
             }
         },
