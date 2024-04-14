@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { nextTick } from 'vue';
 import UserItem from '../users/UserItem.vue';
 
 export default {
@@ -37,6 +38,10 @@ export default {
   },
   created() {
     this.loadTeamMembers(this.teamId);
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log("TeamMembers' beforeRouteUpdate. This should be called when component is invoked again.");
+    next();
   },
   watch: {
     teamId(newId) {

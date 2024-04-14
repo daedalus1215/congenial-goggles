@@ -12,6 +12,10 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  beforeRouteEnter(to, from, next) {
+    console.log('UserList\'s component\'s beforeRouteEnter');
+    next();
+  }
 };
 </script>
 
