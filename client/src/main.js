@@ -9,23 +9,33 @@ import TeamMembers from './components/teams/TeamMembers.vue'
 import TeamsFooter from './components/teams/TeamsFooter.vue'
 import NotFound from './components/nav/NotFound.vue'
 
-// tell it the type of routes we want to support.
+// Tell it the type of routes we want to support.
 const router = createRouter({
-    // history tells the router how to handle the history 
+    // History tells the router how to handle the history 
     history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/teams' },
-        { path: '/users', components:{default: UsersList, footer: UsersFooter} },
+        { path: '/users', components: { default: UsersList, footer: UsersFooter } },
         {
             path: '/teams',
-            components: {default: TeamsList, footer: TeamsFooter},
+            components: { default: TeamsList, footer: TeamsFooter },
             children: [
                 { name: 'team-members', path: ':teamId', component: TeamMembers, props: true }
             ]
         },
         { path: '/:notFound(.*)', component: NotFound }
     ],
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    scrollBehavior(to, from, savedPosition) {
+        // Called by the vue router, whenever our page changes. It receives 3 arguments: to, from, and savedPosition.
+        console.log('to', to);
+        console.log('from', from,);
+        console.log('savedPosition', savedPosition);
+        if (savedPosition) {
+            return savedPosition;
+        }
+        return { left: 0, top: 0 }
+    }
 });
 
 const app = createApp(App)
