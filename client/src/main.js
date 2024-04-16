@@ -14,7 +14,11 @@ const router = createRouter({
     // History tells the router how to handle the history 
     history: createWebHistory(),
     routes: [
-        { path: '/', redirect: '/teams' },
+        { 
+            path: '/', 
+            redirect: '/teams',
+            meta: { needsAuth: true } // can add this meta field, anywhere the this.$route object is available.
+        },
         { 
             path: '/users', 
             components: { default: UsersList, footer: UsersFooter },
@@ -54,6 +58,7 @@ const router = createRouter({
  */
 router.beforeEach((to, from, next) => {
     // next(false) // cancel our navigation
+    console.log('Can determine if we have auth from the meta, ', to.meta.needsAuth)
     next(); // just behave normally
 });
 
