@@ -20,7 +20,6 @@ const router = createRouter({
             components: { default: UsersList, footer: UsersFooter },
             beforeEnter(to, from, next) {
                 console.log('main\'s /user\'s route beforeEnter')
-
                 next(); // behave normally
             }
         },
@@ -69,6 +68,14 @@ router.beforeEach((to, from, next) => {
 //         next({name: 'team-members', params: {teamId: 't2'}})
 //     }
 // });
+
+
+/**
+ * Cannot deny a navigation here, because routing has already happened. But could send analytic data to the BE here.
+ */
+router.afterEach(() => {
+    console.log('global after each')
+});
 
 const app = createApp(App)
 
