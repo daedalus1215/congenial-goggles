@@ -6,19 +6,20 @@ import UsersFooter from './pages/users/UsersFooter.vue';
 import TeamMembers from './pages/teams/TeamMembers.vue'
 import TeamsFooter from './pages/teams/TeamsFooter.vue'
 import NotFound from './pages/NotFound.vue'
+import SignupPage from './pages/signup/SignupPage.vue';
 
 // Tell it the type of routes we want to support.
 export const router = createRouter({
     // History tells the router how to handle the history 
     history: createWebHistory(),
     routes: [
-        { 
-            path: '/', 
+        {
+            path: '/',
             redirect: '/teams',
             meta: { needsAuth: true } // can add this meta field, anywhere the this.$route object is available.
         },
-        { 
-            path: '/users', 
+        {
+            path: '/users',
             components: { default: UsersList, footer: UsersFooter },
             beforeEnter(to, from, next) {
                 console.log('main\'s /user\'s route beforeEnter')
@@ -31,6 +32,10 @@ export const router = createRouter({
             children: [
                 { name: 'team-members', path: ':teamId', component: TeamMembers, props: true }
             ]
+        },
+        { 
+            path: '/sign-up',
+            components: { default: SignupPage}
         },
         { path: '/:notFound(.*)', component: NotFound }
     ],
